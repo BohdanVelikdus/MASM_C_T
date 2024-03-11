@@ -3,9 +3,6 @@
 
 .code
 
-
-
-
 CalculateSum PROC
 ;Prologue
 	push ebp
