@@ -2,24 +2,20 @@
 #include "pch.h"
 #include <stdlib.h>
 
-extern "C" int IntegerMulDiv(int a, int b, int* quo, int* res, int* rem);
+extern "C" int MemoryAddressing(int i, int* v1, int *v2, int* v3, int* v4);
+
+extern "C" int NumFibVals;
+
 
 int main()
 {
-	int a = 12;
-	int b = 5;
-	int* quo = new int();
-	int* res = new int();
-	int* rem = new int();
+	int v1 = 0, v2 = 0, v3 = 0, v4 = 0;
+	int rv;
 
-	IntegerMulDiv(a, b, quo, res, rem);
-
-	std::cout << "quo: " << *quo << std::endl;
-	std::cout << "res: " << *res << std::endl;
-	std::cout << "rem: " << *rem << std::endl;
-
-	delete quo;
-	delete res;
-	delete rem;
+	for (int i = 0; i <= NumFibVals; i++) {
+		rv = MemoryAddressing(i, &v1, &v2, &v3, &v4);
+		printf("rv: %5d v1: %5d v2: %5d v3 %5d v4 %5d\n", rv, v1,v2,v3,v4);
+	}
+	return 0;
 }
 
