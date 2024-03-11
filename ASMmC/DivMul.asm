@@ -1,47 +1,37 @@
-.386
-.model flat,c
+.386 
+.model flat, c
+
+extern GlChar:byte 
+extern GlShort:word
+extern GlInt:dword
+extern GlLongLong:qword
+
 .code
 
-;Return : 0 Error (Division by zero)
-;		: 1 Success
-;
-;Computation *prod = a*b
-;			 *quo = a/b
-;			 *rem = a %b
+IntegerAddition PROC
+	push ebp
+	mov ebp, esp
 
-IntegerMulDiv proc
-				
-			 push ebp
-			 mov ebp,esp
-			 push ebx
+; Compute GlChar += a
+	mov al, [ebp + 8]
+	add [GlChar], al
 
-			 xor eax,eax
+; Compute Short
+	mov ax, [ebp + 12]
+	add [GlShort], ax
 
-			 mov ecx,[ebp+8]		;ecx ='a'
-			 mov edx,[ebp+12]		;edx ='b'
+; Compute GlInt
+	mov eax, [ebp + 16]
+	mov [GlInt], eax
 
-			 or edx, edx
-			 jz InvalidDivisor
+; Compute GlLongLong
+	mov eax, [ebp + 20]
+	mov edx, [ebp + 24]
+	add dword ptr[GlLongLong], eax
+	adc dword ptr[GlLongLong+4], edx
 
-			 imul edx,ecx   ;edx = 'a'*'b'
+	pop ebp
+	ret
 
-			 mov ebx,[ebp+16]  ; ebx ='prod'
-			 mov [ebx],edx
-
-			 mov eax,ecx			;eax ='a'
-			 cdq					;edx:eax contains dividend
-
-			idiv dword ptr[ebp+12]
-
-			mov ebx,[ebp+20]
-			mov [ebx],eax
-			mov ebx,[ebp+24]
-			mov [ebx],edx
-			mov eax,1
-
-	InvalidDivisor:
-			pop ebx
-			pop ebp
-			ret
-IntegerMulDiv  endp
-			end
+IntegerAddition ENDP
+				END

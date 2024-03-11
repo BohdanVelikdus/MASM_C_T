@@ -2,24 +2,16 @@
 #include "pch.h"
 #include <stdlib.h>
 
-extern "C" int IntegerMulDiv(int a, int b, int* quo, int* res, int* rem);
+extern "C" char GlChar = 10;
+extern "C" short GlShort = 20;
+extern "C" int GlInt = 30;
+extern "C" long long GLongLong = 0x000000000FFFFFFFF;
+
+extern "C" void IntegerAddition(char a, short b, int c, long long d);
+
 
 int main()
 {
-	int a = 12;
-	int b = 5;
-	int* quo = new int();
-	int* res = new int();
-	int* rem = new int();
-
-	IntegerMulDiv(a, b, quo, res, rem);
-
-	std::cout << "quo: " << *quo << std::endl;
-	std::cout << "res: " << *res << std::endl;
-	std::cout << "rem: " << *rem << std::endl;
-
-	delete quo;
-	delete res;
-	delete rem;
+	
 }
 
