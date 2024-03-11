@@ -132,9 +132,7 @@
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="DivMul.asm">
-      <FileType>Document</FileType>
-    </MASM>
+    <MASM Include="CalcSum.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
